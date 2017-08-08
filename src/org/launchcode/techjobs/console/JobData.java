@@ -76,9 +76,15 @@ public class JobData {
 
             String aValue = row.get(column);
 
-            if (aValue.contains(value)) {
+            //if (aValue.contains(value)) {
+            if (aValue.equalsIgnoreCase(value)) {
                 jobs.add(row);
             }
+            //else {
+               /*
+           jobs = null; //Make explicit?
+           }
+           */
         }
 
         return jobs;

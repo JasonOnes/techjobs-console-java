@@ -108,28 +108,33 @@ public class TechJobs {
 
     // Print a list of jobs
     private static void printJobs(ArrayList<HashMap<String, String>> someJobs) {
-        if (someJobs != null) {
+        //if (!someJobs.equals(null)) {
+        //if (someJobs != null) {
+        if (someJobs.size() > 0) {
+            System.out.println("There are " + someJobs.size() + " listings for that search.");
             for (HashMap job : someJobs) {
-                if (job != null) {
-                    System.out.println("$$$$$$$$$$$$");
+                //if (!job.equals(null)) {
+                    //System.out.println("$$$$$$$$$$$$");
+                    System.out.println("***********");
                     for (Object key : job.keySet()) {
+                        //for (Map.Entry<String, String> key : job.entrySet())
                         if (job.keySet().contains(key)) {
                             //TODO- describe why Object instead of Map and entrySet()
                             //System.out.print(key);
                             //System.out.printf("%s  :  %s", key, job[key]);
                             System.out.println(key + " : " + job.get(key));
-
+                            //System.out.println(someJobs.size());
 
                         } else {
                             System.out.println("No listing for that search term.");
                         }
-
                     }
                     System.out.println("***********");
-                } //else { System.out.println("Sorry no jobs!");
+
 
             }
 
-        }
+        }else if (someJobs.size() == 0) { System.out.println("Sorry no listing for that searchterm, " +
+                "(maybe check your spelling)!");}
     }
 }
