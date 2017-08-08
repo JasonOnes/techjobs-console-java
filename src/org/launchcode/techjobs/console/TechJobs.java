@@ -1,5 +1,7 @@
 package org.launchcode.techjobs.console;
 
+import com.sun.xml.internal.ws.api.model.ExceptionType;
+
 import java.util.*;
 
 /**
@@ -97,34 +99,42 @@ public class TechJobs {
 
             // Validate user's input
             if (choiceIdx < 0 || choiceIdx >= choiceKeys.length) {
-                System.out.println("Invalid choice. Try again.");
+                System.out.println(("Invalid choice, try again."));
             } else {
                 validChoice = true;
+                //TODO get method to catch input error if not integer
+//            try {
+//                if (choiceIdx < 0 || choiceIdx >= choiceKeys.length) {
+//                    System.out.println("Invalid choice. Try again.");
+//                } else if (choiceIdx > 0 && choiceIdx < choiceKeys.length) {
+//                    validChoice = true;
+//                } catch(InputMismatchException) {
+//                        System.out.println("Enter a NUMBER from above choices.");
+//            }
+
             }
+        }
+            while (!validChoice) ;
 
-        } while(!validChoice);
+            return choiceKeys[choiceIdx];
 
-        return choiceKeys[choiceIdx];
-    }
+}
 
     // Print a list of jobs
     private static void printJobs(ArrayList<HashMap<String, String>> someJobs) {
-        //if (!someJobs.equals(null)) {
-        //if (someJobs != null) {
+        /*
+        I'm leaving some old code commented out throughout project to remind myself of thought process e.g.
+        if (!someJobs.equals(null)) { two earlier attempts to say if someJobs contains jobs then...
+        if (someJobs != null) {
+        */
         if (someJobs.size() > 0) {
             System.out.println("There are " + someJobs.size() + " listings for that search.");
             for (HashMap job : someJobs) {
-                //if (!job.equals(null)) {
-                    //System.out.println("$$$$$$$$$$$$");
                     System.out.println("***********");
                     for (Object key : job.keySet()) {
                         //for (Map.Entry<String, String> key : job.entrySet())
                         if (job.keySet().contains(key)) {
-                            //TODO- describe why Object instead of Map and entrySet()
-                            //System.out.print(key);
-                            //System.out.printf("%s  :  %s", key, job[key]);
                             System.out.println(key + " : " + job.get(key));
-                            //System.out.println(someJobs.size());
 
                         } else {
                             System.out.println("No listing for that search term.");

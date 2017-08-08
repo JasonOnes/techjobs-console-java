@@ -75,7 +75,6 @@ public class JobData {
         for (HashMap<String, String> row : allJobs) {
 
             String aValue = row.get(column);
-            System.out.println(column);
             //if (aValue.contains(value)) { this just checked if they shared a char
             if (aValue.equalsIgnoreCase(value)) {
                 jobs.add(row);
@@ -96,37 +95,16 @@ public class JobData {
         loadData();
 
         ArrayList<HashMap<String, String>> jobs = new ArrayList<>();
-        for (HashMap<String, String> job : allJobs) {
-            for (String column : job.keySet()) {
-                //System.out.println(column);
-                for (String searched_value : job.values()) {//job.get(column)) {
-                    //System.out.print(searched_value);
-
-                    //if (searched_value.equalsIgnoreCase(value)) {
-                    if (searched_value.toLowerCase().contains(value.toLowerCase())) {
-                        if (!jobs.contains(job)) {
+        //if (searched_value.equalsIgnoreCase(value)) this didn't work here because we're not testing for equality
+        for (HashMap<String, String> job : allJobs)
+            for (String column : job.keySet())
+                for (String searched_value : job.values())
+                    if (searched_value.toLowerCase().contains(value.toLowerCase()))
+                        if (!jobs.contains(job)) {  //guards against duplicates
                             jobs.add(job);
                         }
-
-                    }
-                }
-
-//
-//            int job_columns = job.size();
-//            int i;
-//            for (i = 0; i < job_columns; i++) {
-//                //String searched_value = row.get(column);
-//                String column = job.getKey(i);
-//                String searched_value = job.get(column);
-//                System.out.println(searched_value);
-//                if (searched_value.equalsIgnoreCase(value)) {
-//                    jobs.add(job);
-//                }
-//            }
-            }
-        }
         return jobs;
-    }
+    }//looks sparse but alt enter kept suggesting to remove braces, still works and looks cleaner
 
     /**
      * Read in data from a CSV file and store it in a list
