@@ -50,8 +50,10 @@ public class JobData {
 
         // load data, if not already loaded
         loadData();
+        //makes a shallow copy of allJobs
+        ArrayList jobListings = (ArrayList) allJobs.clone();
 
-        return allJobs;
+        return jobListings;
     }
 
     /**

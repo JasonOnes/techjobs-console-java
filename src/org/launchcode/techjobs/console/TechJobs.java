@@ -41,11 +41,11 @@ public class TechJobs {
                     printJobs(JobData.findAll());
                 } else {
 
-                    ArrayList<String> results = JobData.findAll(columnChoice);
-
+                    ArrayList<String> results = JobData.findAll(columnChoice);//.sort(String::compareToIgnoreCase);
                     System.out.println("\n*** All " + columnChoices.get(columnChoice) + " Values ***");
 
                     // Print list of skills, employers, etc
+                    Collections.sort(results);//sorts alphabetically by default
                     for (String item : results) {
                         System.out.println(item);
                     }
